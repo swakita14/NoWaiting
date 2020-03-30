@@ -21,7 +21,7 @@
 
 - Average Wait Time
 
-*Availability Table*
+*Status Table*
 - PK:Availability Id
 - FK:Restaurant Id
 - Drive-Thru Count
