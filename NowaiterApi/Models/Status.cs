@@ -8,7 +8,7 @@ namespace NowaiterApi.Models
     public class Status
     {
 
-        public int StatusID { get; set; }
+        public int StatusId { get; set; }
 
         public int? Drive_Thru { get; set; }
 
