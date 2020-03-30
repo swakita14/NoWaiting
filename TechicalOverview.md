@@ -17,5 +17,6 @@
 **Resource**:
 - API
     - Google Places API: getting venue name, location, number
+    - Azure WebAPI
 - Database
-    - SQLite: Saving results for Google Places, storing numbers of current waiting customer 
+    - Azure SQL Database: Saving results for Google Places, storing numbers of current waiting customer 
