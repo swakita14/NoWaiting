@@ -10,22 +10,35 @@
         - Azure SQL Database
 
 ## Database Schema 
-- Restaurant Id
+*Restaurant Table*
+- PK:Restaurant Id
 - Derived from Google Places  
     - Name
     - Location
     - Phone Number 
     - URL
     - Rating
+
+- Average Wait Time
+
+*Availability Table*
+- PK:Availability Id
+- FK:Restaurant Id
 - Drive-Thru Count
 - In-Store Count
-- Average Wait Time
+
+*Location Table*
+- PK:Location Id
+- FK: Restaurant Id
+- Latitude 
+- Longitude
+
 
 ## Web API Methods
 - Drive-Thru 
-    - GET, POST, DELETE
+    - GET, POST
 - In-Store
-    - GET, POST, DELETE
+    - GET, POST
 - Average Wait Time 
     - GET
     - **How do I calculate this**

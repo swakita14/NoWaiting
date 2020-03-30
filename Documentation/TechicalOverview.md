@@ -17,5 +17,6 @@
 **Resource**:
 - API
     - Google Places API: getting venue name, location, number
+    - ASP.NET Core WebAPI: Connected to the Database
 - Database
     - SQLite: Saving results for Google Places, storing numbers of current waiting customer 
