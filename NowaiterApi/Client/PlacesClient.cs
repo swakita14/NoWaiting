@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using GooglePlaces.Lib.Models;
 using Newtonsoft.Json;
 using NowaiterApi.Interfaces.Service;
 using RestSharp;

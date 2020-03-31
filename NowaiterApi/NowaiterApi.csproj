@@ -5,17 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DAL\Respositories\**" />
+    <Compile Remove="Services\**" />
+    <Content Remove="DAL\Respositories\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="DAL\Respositories\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="DAL\Respositories\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DAL\Respositories\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\GooglePlaces.Lib\GooglePlaces.Lib.csproj" />
+    <PackageReference Include="RestSharp" Version="106.10.1" />
   </ItemGroup>
 
 
