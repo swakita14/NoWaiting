@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GooglePlaces.Lib.Services
+namespace NowaiterApi.Models.GooglePlaces
 {
-    public class PlacesService
+    class DetailSearch
     {
     }
 }

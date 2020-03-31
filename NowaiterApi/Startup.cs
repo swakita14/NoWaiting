@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NowaiterApi.DAL;
+using RestSharp;
 
 namespace NowaiterApi
 {
@@ -29,6 +30,9 @@ namespace NowaiterApi
         {
             // Registering context 
             services.AddDbContext<NowaiterContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:NowaiterDB"]));
+
+            // Registering Google Place Client
+            services.AddHttpClient<IRestClient, RestClient>(client => { client.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/"); });
 
             // Registering services 
 
