@@ -11,11 +11,12 @@ namespace NowaiterApi.Services
     public class PlacesClient : IPlacesClient
     {
         private static IRestClient _client;
-        private readonly string _apiKey = "KEY";
+        private readonly string _apiKey;
 
-        public PlacesClient(IRestClient client)
+        public PlacesClient(IRestClient client, string apiKey)
         {
             _client = client;
+            _apiKey = apiKey;
         }
 
         /**

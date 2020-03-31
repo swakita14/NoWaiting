@@ -8,10 +8,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using NowaiterApi.DAL;
+using NowaiterApi.Interfaces.Service;
+using NowaiterApi.Services;
 using RestSharp;
 
 namespace NowaiterApi
@@ -26,17 +30,38 @@ namespace NowaiterApi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        // Using Autofac for the IoC instead of the pre-included one 
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            // Registering context 
+            // Add Framework service
+            services.AddMvc();
             services.AddDbContext<NowaiterContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:NowaiterDB"]));
-
-            // Registering Google Place Client
-            services.AddHttpClient<IRestClient, RestClient>(client => { client.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/place/"); });
-
-            // Registering services 
-
             services.AddControllers();
+
+            // Register Autofac Container
+            var builder = new ContainerBuilder();
+
+            // API key for Google Places 
+            var key = "";
+
+            // Register RestClient for Google Places 
+            builder.Register(x =>
+                new RestClient($"https://maps.googleapis.com/maps/api/place")).Keyed<IRestClient>("GooglePlaces");
+
+            // Registering Google Places client with api key 
+            builder.Register(x => new PlacesClient(x.ResolveKeyed<IRestClient>("GooglePlaces"), key))
+                .As<IPlacesClient>();
+
+            // Register Services
+
+            // Register repositories
+
+
+            builder.Populate(services);
+            var container = builder.Build();
+
+            //Create the IServiceProvider based on the container.
+            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
