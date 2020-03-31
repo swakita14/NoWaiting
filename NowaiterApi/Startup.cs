@@ -14,6 +14,8 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using NowaiterApi.DAL;
+using NowaiterApi.DAL.Repositories;
+using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.Service;
 using NowaiterApi.Services;
 using RestSharp;
@@ -55,7 +57,9 @@ namespace NowaiterApi
             // Register Services
 
             // Register repositories
-
+            builder.RegisterType<LocationRepository>().As<ILocationRepository>();
+            builder.RegisterType<RestaurantRepository>().As<IRestaurantRepository>();
+            builder.RegisterType<StatusRepository>().As<IStatusRepository>();
 
             builder.Populate(services);
             var container = builder.Build();
