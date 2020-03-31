@@ -30,6 +30,8 @@ namespace NowaiterApi
             // Registering context 
             services.AddDbContext<NowaiterContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:NowaiterDB"]));
 
+            // Registering services 
+
             services.AddControllers();
         }
 

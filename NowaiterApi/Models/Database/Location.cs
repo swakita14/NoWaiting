@@ -8,7 +8,7 @@ namespace NowaiterApi.Models
     public class Location
     {
 
-        public int LocationID { get; set; }
+        public int LocationId { get; set; }
 
         public string Latitude { get; set; }
 
