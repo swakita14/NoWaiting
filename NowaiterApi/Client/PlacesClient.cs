@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using GooglePlaces.Lib.Models;
 using Newtonsoft.Json;
@@ -65,8 +66,12 @@ namespace NowaiterApi.Services
             request.AddQueryParameter("type", type);
             request.AddQueryParameter("location", $"{location.Lat} , {location.Lng}");
 
+            Debug.Write(request);
+
             // Get response with request
             IRestResponse response = _client.Execute(request);
+
+            
 
             // Convert result into model and return response
             PlacesResult apiResult = JsonConvert.DeserializeObject<PlacesResult>(response.Content);

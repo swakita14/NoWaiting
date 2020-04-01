@@ -24,25 +24,33 @@ namespace NowaiterApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            this.Configuration = builder.Build();
+
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfigurationRoot Configuration { get; private set; }
+
+        //public ILifetimeScope AutofacContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // Using Autofac for the IoC instead of the pre-included one 
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             // Add Framework service
             services.AddMvc();
             services.AddDbContext<NowaiterContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:NowaiterDB"]));
             services.AddControllers();
+        }
 
-            // Register Autofac Container
-            var builder = new ContainerBuilder();
-
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
             // API key for Google Places 
             var key = "";
 
@@ -60,12 +68,6 @@ namespace NowaiterApi
             builder.RegisterType<LocationRepository>().As<ILocationRepository>();
             builder.RegisterType<RestaurantRepository>().As<IRestaurantRepository>();
             builder.RegisterType<StatusRepository>().As<IStatusRepository>();
-
-            builder.Populate(services);
-            var container = builder.Build();
-
-            //Create the IServiceProvider based on the container.
-            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,9 +85,9 @@ namespace NowaiterApi
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+                {
+                    endpoints.MapControllerRoute(name: "default", pattern: "{controller=GooglePlaces}/{action=Index}");
+                });
         }
     }
 }

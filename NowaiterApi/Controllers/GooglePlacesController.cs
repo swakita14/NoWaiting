@@ -17,6 +17,9 @@ namespace NowaiterApi.Controllers
         }
         public IActionResult Index()
         {
+
+            _placesService.GetPlacesList();
+
             return View();
         }
     }
