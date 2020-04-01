@@ -11,5 +11,14 @@ namespace NowaiterApi.Interfaces
         List<Location> GetAllLocations();
 
         Location AddLocation(Location location);
+        Location GetLocationById(int id);
+
+        void EditLocation(Location location);
+
+        Location GetLocationByRestaurantId(int restaurantId);
+
+        void DeleteLocation(Location location);
+
+
     }
 }
