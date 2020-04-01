@@ -17,5 +17,7 @@ namespace NowaiterApi.Interfaces
         void Delete(Restaurant restaurant);
 
         List<Restaurant> GetAllRestaurants();
+
+        Restaurant GetRestaurantWithPlaceId(string placeId);
     }
 }

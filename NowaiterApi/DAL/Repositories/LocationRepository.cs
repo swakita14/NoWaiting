@@ -9,6 +9,13 @@ namespace NowaiterApi.DAL.Repositories
 {
     public class LocationRepository : ILocationRepository
     {
+        private readonly NowaiterContext _nowaiterContext;
+
+        public LocationRepository(NowaiterContext nowaiterContext)
+        {
+            _nowaiterContext = nowaiterContext;
+        }
+
         public Location AddLocation(Location location)
         {
             throw new NotImplementedException();

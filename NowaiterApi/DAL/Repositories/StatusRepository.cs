@@ -9,6 +9,12 @@ namespace NowaiterApi.DAL.Repositories
 {
     public class StatusRepository : IStatusRepository
     {
+        private readonly NowaiterContext _nowaiterContext;
+
+        public StatusRepository(NowaiterContext nowaiterContext)
+        {
+            _nowaiterContext = nowaiterContext;
+        }
         public void EditDriveIn(Restaurant restaurant)
         {
             throw new NotImplementedException();
