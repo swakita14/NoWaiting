@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NowaiterApi.Models;
 
 namespace NowaiterApi.Interfaces
 {
     interface IStatusRepository
     {
-        Status GetRestaurantStatusById(int id);
+         void EditInStore(Status status);
 
-        void EditDriveIn(Restaurant restaurant);
+         Status GetRestaurantStatusById(int id);
 
-        void EditInStore(Restaurant restaurant);
+         void EditStatus(Status status);
+         bool EmptyDriveThru(int id);
 
-        void NewCustomer();
-
-        void LeftRestaurant();
+         bool EmptyInStore(int id);
     }
 }
