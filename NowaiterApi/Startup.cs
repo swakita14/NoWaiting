@@ -52,14 +52,14 @@ namespace NowaiterApi
         public void ConfigureContainer(ContainerBuilder builder)
         {
             // API key for Google Places 
-            var key = "";
+            var apiKey = "";
 
             // Register RestClient for Google Places 
             builder.Register(x =>
                 new RestClient($"https://maps.googleapis.com/maps/api/place/")).Keyed<IRestClient>("GooglePlaces");
 
             // Registering Google Places client with api key 
-            builder.Register(x => new PlacesClient(x.ResolveKeyed<IRestClient>("GooglePlaces"), key))
+            builder.Register(x => new PlacesClient(x.ResolveKeyed<IRestClient>("GooglePlaces"), apiKey))
                 .As<IPlacesClient>();
 
             // Register Services

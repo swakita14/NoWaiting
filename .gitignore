@@ -20,6 +20,7 @@ obj/
 *.user
 *.userosscache
 *.sln.docstates
+AppSettingsSecret.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 
