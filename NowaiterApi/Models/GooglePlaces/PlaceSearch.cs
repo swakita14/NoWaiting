@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GooglePlaces.Lib.Models
+namespace NowaiterApi.Models.GooglePlaces
 {
     public class PlacesResponse
     {

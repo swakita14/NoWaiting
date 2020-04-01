@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GooglePlaces.Lib.Models;
 using NowaiterApi.Models.GooglePlaces;
 
 namespace NowaiterApi.Interfaces.Service
@@ -11,6 +10,6 @@ namespace NowaiterApi.Interfaces.Service
     {
         List<PlacesResult> GetPlacesList();
 
-        PlacesResult GetPlacesResult(string type, Location location);
+        PlacesResult GetPlacesResult(string type, Location location, string radius);
     }
 }

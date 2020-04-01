@@ -56,7 +56,7 @@ namespace NowaiterApi
 
             // Register RestClient for Google Places 
             builder.Register(x =>
-                new RestClient($"https://maps.googleapis.com/maps/api/place")).Keyed<IRestClient>("GooglePlaces");
+                new RestClient($"https://maps.googleapis.com/maps/api/place/")).Keyed<IRestClient>("GooglePlaces");
 
             // Registering Google Places client with api key 
             builder.Register(x => new PlacesClient(x.ResolveKeyed<IRestClient>("GooglePlaces"), key))

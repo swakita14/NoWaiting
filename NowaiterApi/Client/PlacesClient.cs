@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using GooglePlaces.Lib.Models;
 using Newtonsoft.Json;
 using NowaiterApi.Interfaces.Service;
 using RestSharp;
@@ -43,7 +42,7 @@ namespace NowaiterApi.Services
             // Looping through the city and adding the places api result 
             foreach (var city in cities)
             {
-                PlacesResult restaurants = GetPlacesResult("restaurant", city);
+                places.Add(GetPlacesResult("restaurant", city, "1000"));
             }
 
             // Return the list of places from response 
@@ -56,7 +55,7 @@ namespace NowaiterApi.Services
          * <param name="type">look up the status</param>
          * <param name="location">add geo-coordinates to the request</param>
          */
-        public PlacesResult GetPlacesResult(string type, Location location)
+        public PlacesResult GetPlacesResult(string type, Location location, string radius)
         {
             // Initializing Request and adding API Key to it
             RestRequest request = new RestRequest("nearbysearch/json?", Method.GET);
@@ -64,14 +63,17 @@ namespace NowaiterApi.Services
 
             // Adding parameters to look for places with near addresses
             request.AddQueryParameter("type", type);
-            request.AddQueryParameter("location", $"{location.Lat} , {location.Lng}");
-
-            Debug.Write(request);
+            request.AddQueryParameter("location", $"{location.Lat},{location.Lng}");
+            request.AddQueryParameter("radius", radius);
 
             // Get response with request
             IRestResponse response = _client.Execute(request);
 
-            
+            Debug.Write(response.Content);
+
+            Debug.Write(response.ResponseUri);
+
+
 
             // Convert result into model and return response
             PlacesResult apiResult = JsonConvert.DeserializeObject<PlacesResult>(response.Content);
