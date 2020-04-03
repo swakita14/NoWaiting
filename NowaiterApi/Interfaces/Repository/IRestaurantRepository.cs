@@ -6,7 +6,7 @@ using NowaiterApi.Models;
 
 namespace NowaiterApi.Interfaces
 {
-    interface IRestaurantRepository
+    public interface IRestaurantRepository
     {
         Restaurant AddRestaurant(Restaurant restaurant);
 

@@ -25,8 +25,7 @@ namespace NowaiterApi.DAL.Configurations
 
             builder.Property(x => x.Name)
                 .HasColumnName("Name")
-                .HasColumnType("nvarchar")
-                .HasMaxLength(-1)
+                .HasColumnType("nvarchar").HasMaxLength(100)
                 .IsRequired();
 
             builder.Property(x => x.Phone)

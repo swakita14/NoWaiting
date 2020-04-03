@@ -6,7 +6,7 @@ using NowaiterApi.Models;
 
 namespace NowaiterApi.Interfaces
 {
-    interface ILocationRepository
+    public interface ILocationRepository
     {
         List<Location> GetAllLocations();
 

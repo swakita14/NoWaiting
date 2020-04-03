@@ -7,7 +7,7 @@ using NowaiterApi.Models;
 
 namespace NowaiterApi.Interfaces
 {
-    interface IStatusRepository
+    public interface IStatusRepository
     {
          void EditInStore(Status status);
 
