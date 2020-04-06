@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Newtonsoft.Json;
-using NowaiterApi.Interfaces.Service;
+using NowaiterApi.Interfaces.GoogleClient;
 using RestSharp;
 using NowaiterApi.Models.GooglePlaces;
 using NowaiterApi.Models.GooglePlaces.QuickType;

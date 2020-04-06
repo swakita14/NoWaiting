@@ -14,7 +14,7 @@ using NowaiterApi.Client;
 using NowaiterApi.DAL;
 using NowaiterApi.DAL.Repositories;
 using NowaiterApi.Interfaces;
-using NowaiterApi.Interfaces.Service;
+using NowaiterApi.Interfaces.GoogleClient;
 using RestSharp;
 
 namespace NowaiterApi

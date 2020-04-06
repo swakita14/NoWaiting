@@ -6,7 +6,7 @@ using NowaiterApi.Models.GooglePlaces;
 using NowaiterApi.Models.GooglePlaces.QuickType;
 using Location = NowaiterApi.Models.GooglePlaces.Location;
 
-namespace NowaiterApi.Interfaces.Service
+namespace NowaiterApi.Interfaces.GoogleClient
 {
     public interface IPlacesClient
     {
