@@ -10,11 +10,11 @@ using Microsoft.Extensions.Hosting;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using NowaiterApi.Client;
 using NowaiterApi.DAL;
 using NowaiterApi.DAL.Repositories;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.Service;
-using NowaiterApi.Services;
 using RestSharp;
 
 namespace NowaiterApi

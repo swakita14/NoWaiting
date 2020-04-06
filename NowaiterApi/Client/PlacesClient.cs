@@ -9,7 +9,7 @@ using NowaiterApi.Models.GooglePlaces;
 using NowaiterApi.Models.GooglePlaces.QuickType;
 using Location = NowaiterApi.Models.GooglePlaces.Location;
 
-namespace NowaiterApi.Services
+namespace NowaiterApi.Client
 {
     public class PlacesClient : IPlacesClient
     {
@@ -24,7 +24,7 @@ namespace NowaiterApi.Services
 
         /**
          * This method utilizes the GetPlace method and retrieves a list of places with different addresses/locations
-         * Source Code Model: RecNexus by Shayna
+         * 
          */
         public List<string> GetPlacesList()
         {
@@ -67,7 +67,6 @@ namespace NowaiterApi.Services
 
         /**
          * This method will call the Google Places API and grab the response and return result
-         * Source Code Model: RecNexus by Shayna
          * <param name="type">look up the status</param>
          * <param name="location">add geo-coordinates to the request</param>
          */
@@ -92,13 +91,9 @@ namespace NowaiterApi.Services
             return apiResult;
         }
 
-        public List<DetailResult> GetDetailList()
-        {
-            List<DetailResult> detailResults = new List<DetailResult>();
-
-            return detailResults;
-        }
-
+        /**
+         * This method takes in the places_id from the google api and searches details 
+         */
         public DetailResult GetDetailResult(string placeId)
         {
             // Initializing Request and adding API Key to it
@@ -106,7 +101,7 @@ namespace NowaiterApi.Services
             request.AddQueryParameter("key", _apiKey);
 
             // Adding parameters to look for places with near addresses
-            request.AddQueryParameter("place", placeId);
+            request.AddQueryParameter("place_id", placeId);
 
             // Get response with request
             IRestResponse response = _client.Execute(request);

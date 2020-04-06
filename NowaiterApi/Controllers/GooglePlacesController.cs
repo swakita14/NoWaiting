@@ -7,6 +7,7 @@ using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.Service;
 using NowaiterApi.Models;
 using NowaiterApi.Models.GooglePlaces;
+using NowaiterApi.Models.GooglePlaces.QuickType;
 
 namespace NowaiterApi.Controllers
 {
@@ -23,7 +24,6 @@ namespace NowaiterApi.Controllers
 
         public IActionResult Index()
         {
-
             StoreResults();
 
             return View();
@@ -31,9 +31,19 @@ namespace NowaiterApi.Controllers
 
         public void StoreResults()
         {
-
-            foreach (var placesid in _placesService.GetPlacesList())
+            // Getting the place_id list and finding the details about each restaurant 
+            foreach (var placesId in _placesService.GetPlacesList())
             {
+                DetailResult result = _placesService.GetDetailResult(placesId);
+
+                _restaurantRepository.AddRestaurant(new Restaurant
+                {
+                    Name = result.Name,
+                    Phone = result.FormattedPhoneNumber,
+                    Address1 = result.FormattedAddress,
+                    DateUpdated = DateTime.Now,
+                    GooglePlaceID = result.PlaceId
+                });
             }
 
         }
