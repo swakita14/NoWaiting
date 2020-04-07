@@ -9,6 +9,7 @@ using NowaiterApi.Interfaces.GoogleClient;
 using NowaiterApi.Models;
 using NowaiterApi.Models.GooglePlaces;
 using NowaiterApi.Models.GooglePlaces.QuickType;
+using Location = NowaiterApi.Models.Location;
 
 namespace NowaiterApi.Controllers
 {
@@ -37,10 +38,11 @@ namespace NowaiterApi.Controllers
             // Getting the place_id list and finding the details about each restaurant 
             foreach (var placesId in _placesService.GetPlacesList())
             {
+                // Getting the details of the information with the place_id
                 DetailResult result = _placesService.GetDetailResult(placesId);
 
-                // Adding new restaurant
-                _restaurantRepository.AddRestaurant(new Restaurant
+                // Creating new restaurant object with the information from Places API
+                Restaurant newRestaurant = new Restaurant
                 {
                     Name = result.Name,
                     Phone = result.FormattedPhoneNumber,
@@ -50,7 +52,21 @@ namespace NowaiterApi.Controllers
                     ZipCode = result.FormattedAddress.Split(',')[2].Split(' ')[2],
                     DateUpdated = DateTime.Now,
                     GooglePlaceID = result.PlaceId
-                });
+                };
+
+                // Adding new restaurant
+                _restaurantRepository.AddRestaurant(newRestaurant);
+
+                // Creating a location object with the result
+                Location newLocation = new Location
+                {
+                    Latitude = result.Geometry.Location.Lat,
+                    Longitude = result.Geometry.Location.Lng,
+                    RestaurantID = newRestaurant.RestaurantId
+                };
+
+                // Adding new location for the restaurant 
+                _locationRepository.AddLocation(newLocation);
             }
 
         }
