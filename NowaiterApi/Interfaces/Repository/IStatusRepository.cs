@@ -9,6 +9,8 @@ namespace NowaiterApi.Interfaces
 {
     public interface IStatusRepository
     {
+
+         Status AddStatus(Status newStatus);
          void EditInStore(Status status);
 
          Status GetRestaurantStatusById(int id);

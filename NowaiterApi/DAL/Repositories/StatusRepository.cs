@@ -17,6 +17,13 @@ namespace NowaiterApi.DAL.Repositories
             _context = context;
         }
 
+        public Status AddStatus(Status newStatus)
+        {
+            _context.Statuses.Add(newStatus);
+            _context.SaveChanges();
+            return newStatus;
+        }
+
         public void EditInStore(Status status)
         {
             _context.Entry(status).State = EntityState.Modified;

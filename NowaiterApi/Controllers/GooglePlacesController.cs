@@ -18,22 +18,24 @@ namespace NowaiterApi.Controllers
         private readonly IPlacesClient _placesService;
         private readonly IRestaurantRepository _restaurantRepository;
         private readonly ILocationRepository _locationRepository;
+        private readonly IStatusRepository _statusRepository;
 
-        public GooglePlacesController(IPlacesClient placesService, IRestaurantRepository restaurantRepository, ILocationRepository locationRepository)
+        public GooglePlacesController(IPlacesClient placesService, IRestaurantRepository restaurantRepository, ILocationRepository locationRepository, IStatusRepository statusRepository)
         {
             _placesService = placesService;
             _restaurantRepository = restaurantRepository;
             _locationRepository = locationRepository;
+            _statusRepository = statusRepository;
         }
 
         public IActionResult Index()
         {
-            StoreResults();
+            InitalizeTables();
 
             return View();
         }
 
-        public void StoreResults()
+        public void InitalizeTables()
         {
             // Getting the place_id list and finding the details about each restaurant 
             foreach (var placesId in _placesService.GetPlacesList())
@@ -67,6 +69,18 @@ namespace NowaiterApi.Controllers
 
                 // Adding new location for the restaurant 
                 _locationRepository.AddLocation(newLocation);
+
+                // Initializing status of the restaurant
+                Status newStatus = new Status
+                {
+                    RestaurantID = newRestaurant.RestaurantId,
+                    Drive_Thru = 0,
+                    In_Store = 0
+                };
+
+                // Adding the Status to Db
+                _statusRepository.AddStatus(newStatus);
+
             }
 
         }
