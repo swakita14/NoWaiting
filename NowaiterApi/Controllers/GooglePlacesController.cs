@@ -30,12 +30,12 @@ namespace NowaiterApi.Controllers
 
         public IActionResult Index()
         {
-            InitalizeTables();
+            //InitalizeTables();
 
             return View();
         }
 
-        public void InitalizeTables()
+        public void InitializeTables()
         {
             // Getting the place_id list and finding the details about each restaurant 
             foreach (var placesId in _placesService.GetPlacesList())
