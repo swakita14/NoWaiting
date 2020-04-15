@@ -30,7 +30,7 @@ namespace NowaiterApi.Controllers
 
         public IActionResult Index()
         {
-            //IntializeGoogleLocations();
+            //InitializeGoogleLocations();
 
             return View();
         }
