@@ -17,11 +17,13 @@ namespace NowaiterApi.Controllers
     {
         private readonly NowaiterContext _context;
         private readonly IRestaurantRepository _restaurantRepository;
+        private readonly IStatusRepository _statusRepository;
         
-        public StatusController(NowaiterContext context, IRestaurantRepository restaurantRepository)
+        public StatusController(NowaiterContext context, IRestaurantRepository restaurantRepository, IStatusRepository statusRepository)
         {
             _context = context;
             _restaurantRepository = restaurantRepository;
+            _statusRepository = statusRepository;
         }
 
         /**
@@ -39,8 +41,6 @@ namespace NowaiterApi.Controllers
          */
         [Route("search/{name}")]
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Search(string name)
         {
             List<Restaurant> searchRestaurants = _restaurantRepository.GetRestaurantsByName(name);
@@ -56,11 +56,11 @@ namespace NowaiterApi.Controllers
         /**
          * Retrieves the status of the restaurant. 
          */
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Route("availability/{restaurantId}")]
+        [HttpGet]
         public IActionResult Availability(int restaurantId)
         {
-            return Ok();
+            return Ok(_statusRepository.GetRestaurantStatusById(restaurantId));
         }
     }
 }
