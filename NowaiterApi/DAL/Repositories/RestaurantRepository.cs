@@ -54,5 +54,11 @@ namespace NowaiterApi.DAL.Repositories
         {
             return _context.Restaurants.FirstOrDefault(x => x.GooglePlaceID.Equals(placeId));
         }
+
+        public List<Restaurant> GetRestaurantsByName(string name)
+        {
+            return _context.Restaurants.Where(x => x.Name.Contains(name)).ToList();
+        }
+
     }
 }
