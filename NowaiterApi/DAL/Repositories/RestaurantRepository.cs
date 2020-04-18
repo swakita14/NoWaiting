@@ -52,7 +52,7 @@ namespace NowaiterApi.DAL.Repositories
 
         public Restaurant GetRestaurantWithPlaceId(string placeId)
         {
-            return _context.Restaurants.FirstOrDefault(x => x.GooglePlaceID.Equals(placeId));
+            return _context.Restaurants.FirstOrDefault(x => x.GooglePlaceId.Equals(placeId));
         }
 
         public List<Restaurant> GetRestaurantsByName(string name)
