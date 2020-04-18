@@ -10,11 +10,11 @@ namespace NowaiterApi.Models
 
         public int StatusId { get; set; }
 
-        public int? Drive_Thru { get; set; }
+        public int? DriveThru { get; set; }
 
-        public int? In_Store { get; set; }
+        public int? InStore { get; set; }
 
-        public int RestaurantID { get; set; }
+        public int RestaurantId { get; set; }
 
     }
 }

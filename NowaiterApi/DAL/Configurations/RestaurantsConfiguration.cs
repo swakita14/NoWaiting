@@ -25,7 +25,8 @@ namespace NowaiterApi.DAL.Configurations
 
             builder.Property(x => x.Name)
                 .HasColumnName("Name")
-                .HasColumnType("nvarchar").HasMaxLength(100)
+                .HasColumnType("nvarchar")
+                .HasMaxLength(100)
                 .IsRequired();
 
             builder.Property(x => x.Phone)
@@ -62,7 +63,7 @@ namespace NowaiterApi.DAL.Configurations
                 .HasColumnName("DateUpdated")
                 .HasColumnType("datetime");
 
-            builder.Property(x => x.GooglePlaceID)
+            builder.Property(x => x.GooglePlaceId)
                 .HasColumnName("GooglePlaceID")
                 .HasColumnType("nvarchar")
                 .HasMaxLength(100);

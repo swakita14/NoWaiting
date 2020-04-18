@@ -23,15 +23,15 @@ namespace NowaiterApi.DAL.Configurations
                 .HasColumnType("int")
                 .IsRequired();
 
-            builder.Property(x => x.Drive_Thru)
+            builder.Property(x => x.DriveThru)
                 .HasColumnName("Drive_Thru")
                 .HasColumnType("int");
 
-            builder.Property(x => x.In_Store)
+            builder.Property(x => x.InStore)
                 .HasColumnName("In_Store")
                 .HasColumnType("int");
 
-            builder.Property(x => x.RestaurantID)
+            builder.Property(x => x.RestaurantId)
                 .HasColumnName("RestaurantID")
                 .HasColumnType("int")
                 .IsRequired();

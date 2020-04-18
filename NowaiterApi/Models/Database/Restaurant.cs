@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NowaiterApi.Models.GooglePlaces;
 
 namespace NowaiterApi.Models
 {
@@ -26,7 +27,7 @@ namespace NowaiterApi.Models
 
         public DateTime? DateUpdated { get; set; }
 
-        public string GooglePlaceID { get; set; }
+        public string GooglePlaceId { get; set; }
 
     }
 

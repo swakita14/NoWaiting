@@ -72,7 +72,7 @@ namespace NowaiterApi.Models.GooglePlaces
         public Location Southwest { get; set; }
     }
 
-    public partial class OpeningHours
+    public class OpeningHours
     {
         [JsonProperty("open_now")]
         public bool OpenNow { get; set; }

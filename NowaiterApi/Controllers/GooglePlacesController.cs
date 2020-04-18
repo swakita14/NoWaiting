@@ -53,7 +53,7 @@ namespace NowaiterApi.Controllers
                     State = result.FormattedAddress.Split(',')[2].Split(' ')[1],
                     ZipCode = result.FormattedAddress.Split(',')[2].Split(' ')[2],
                     DateUpdated = DateTime.Now,
-                    GooglePlaceID = result.PlaceId
+                    GooglePlaceId = result.PlaceId
                 };
 
                 // Adding new restaurant
@@ -73,9 +73,9 @@ namespace NowaiterApi.Controllers
                 // Initializing status of the restaurant
                 Status newStatus = new Status
                 {
-                    RestaurantID = newRestaurant.RestaurantId,
-                    Drive_Thru = 0,
-                    In_Store = 0
+                    RestaurantId = newRestaurant.RestaurantId,
+                    DriveThru = 0,
+                    InStore = 0
                 };
 
                 // Adding the Status to Db

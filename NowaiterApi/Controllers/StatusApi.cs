@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using NowaiterApi.DAL;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Models;
+using NowaiterApi.Models.ViewModel;
 
 
 namespace NowaiterApi.Controllers
@@ -43,24 +44,35 @@ namespace NowaiterApi.Controllers
         [HttpGet]
         public IActionResult Search(string name)
         {
+            // Getting restaurant with the matching search string 
             List<Restaurant> searchRestaurants = _restaurantRepository.GetRestaurantsByName(name);
 
+            // If list is empty, there return error 
             if (searchRestaurants.Count == 0)
             {
                 throw new ArgumentException($"Could not find any restaurants with the keyword {name}");
             }
 
-            return Ok(_restaurantRepository.GetRestaurantsByName(name));
+            // Creating view model with relevant information for user
+            List<RestaurantAvailabilityViewModel> currentAvailability = new List<RestaurantAvailabilityViewModel>();
+
+            // Add each item into view model list 
+            foreach (var restaurant in searchRestaurants)
+            {
+                currentAvailability.Add(new RestaurantAvailabilityViewModel
+                {
+                    RestaurantId = restaurant.RestaurantId,
+                    Name = restaurant.Name,
+                    Phone = restaurant.Phone,
+                    Address1 = restaurant.Address1,
+                    DriveThru = _statusRepository.GetRestaurantStatusById(restaurant.RestaurantId).DriveThru,
+                    InStore = _statusRepository.GetRestaurantStatusById(restaurant.RestaurantId).InStore
+                });
+            }
+
+            // Return the result
+            return Ok(currentAvailability);
         }
 
-        /**
-         * Retrieves the status of the restaurant. 
-         */
-        [Route("availability/{restaurantId}")]
-        [HttpGet]
-        public IActionResult Availability(int restaurantId)
-        {
-            return Ok(_statusRepository.GetRestaurantStatusById(restaurantId));
-        }
     }
 }

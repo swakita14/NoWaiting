@@ -32,7 +32,7 @@ namespace NowaiterApi.DAL.Repositories
 
         public Status GetRestaurantStatusById(int id)
         {
-            return _context.Statuses.FirstOrDefault(x => x.RestaurantID == id);
+            return _context.Statuses.FirstOrDefault(x => x.RestaurantId == id);
         }
 
         public void EditStatus(Status status)
@@ -42,12 +42,12 @@ namespace NowaiterApi.DAL.Repositories
         }
         public bool EmptyDriveThru(int id)
         {
-            return _context.Statuses.FirstOrDefault(x => x.RestaurantID == id).Drive_Thru == 0;
+            return _context.Statuses.FirstOrDefault(x => x.RestaurantId == id).DriveThru == 0;
         }
 
         public bool EmptyInStore(int id)
         {
-            return _context.Statuses.FirstOrDefault(x => x.RestaurantID == id).In_Store == 0;
+            return _context.Statuses.FirstOrDefault(x => x.RestaurantId == id).InStore == 0;
         }
 
     }
