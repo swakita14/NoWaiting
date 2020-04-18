@@ -12,14 +12,14 @@ using NowaiterApi.Models;
 namespace NowaiterApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class StatusController : Controller
+    [Route("api/status")]
+    public class StatusApi : Controller
     {
         private readonly NowaiterContext _context;
         private readonly IRestaurantRepository _restaurantRepository;
         private readonly IStatusRepository _statusRepository;
         
-        public StatusController(NowaiterContext context, IRestaurantRepository restaurantRepository, IStatusRepository statusRepository)
+        public StatusApi(NowaiterContext context, IRestaurantRepository restaurantRepository, IStatusRepository statusRepository)
         {
             _context = context;
             _restaurantRepository = restaurantRepository;
