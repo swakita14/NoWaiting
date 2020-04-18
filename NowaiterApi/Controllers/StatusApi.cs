@@ -61,7 +61,7 @@ namespace NowaiterApi.Controllers
             {
                 currentAvailability.Add(new RestaurantAvailabilityViewModel
                 {
-                    RestaurantId = restaurant.RestaurantId,
+                    //RestaurantId = restaurant.RestaurantId,
                     Name = restaurant.Name,
                     Phone = restaurant.Phone,
                     Address1 = restaurant.Address1,
@@ -72,6 +72,46 @@ namespace NowaiterApi.Controllers
 
             // Return the result
             return Ok(currentAvailability);
+        }
+
+        /**
+         * POST method to add a single customer to drivethru count
+         */
+        [Route("drivethru/arrived/{restaurantId}")]
+        [HttpPost]
+        public IActionResult EnterDriveThru(int restaurantId)
+        {
+            return Ok();
+        }
+
+        /**
+         * POST method to subtract single customer from drivethru count
+         */
+        [Route("drivethru/left/{restaurantId}")]
+        [HttpPost]
+        public IActionResult LeftDriveThru(int restaurantId)
+        {
+            return Ok();
+        }
+
+        /**
+ * POST method to add a single customer to in-store count
+ */
+        [Route("instore/arrived/{restaurantId}")]
+        [HttpPost]
+        public IActionResult EnterInStore(int restaurantId)
+        {
+            return Ok();
+        }
+
+        /**
+         * POST method to subtract single customer from in store count
+         */
+        [Route("instore/left/{restaurantId}")]
+        [HttpPost]
+        public IActionResult LeftInStore(int restaurantId)
+        {
+            return Ok();
         }
 
     }
