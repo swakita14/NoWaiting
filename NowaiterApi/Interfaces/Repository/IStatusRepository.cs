@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NowaiterApi.Models;
@@ -16,8 +17,16 @@ namespace NowaiterApi.Interfaces
          Status GetRestaurantStatusById(int id);
 
          void EditStatus(Status status);
-         bool EmptyDriveThru(int id);
+         bool IsEmptyDriveThru(int id);
 
-         bool EmptyInStore(int id);
+         bool IsEmptyInStore(int id);
+
+         int AddDriveThru(int restaurantId);
+
+         int AddInStore(int restaurantId);
+
+         int LeftDriveThru(int restaurantId);
+
+         int LeftInStore(int restaurantId);
     }
 }

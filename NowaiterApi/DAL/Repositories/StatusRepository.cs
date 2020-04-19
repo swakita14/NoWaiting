@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NowaiterApi.Interfaces;
@@ -32,7 +33,11 @@ namespace NowaiterApi.DAL.Repositories
 
         public Status GetRestaurantStatusById(int id)
         {
-            return _context.Statuses.FirstOrDefault(x => x.RestaurantId == id);
+            Status currentStatus = _context.Statuses.FirstOrDefault(x => x.RestaurantId == id);
+
+            if (currentStatus == null) return null;
+
+            return currentStatus;
         }
 
         public void EditStatus(Status status)
@@ -40,14 +45,66 @@ namespace NowaiterApi.DAL.Repositories
             _context.Entry(status).State = EntityState.Modified;
             _context.SaveChanges();
         }
-        public bool EmptyDriveThru(int id)
+        public bool IsEmptyDriveThru(int restaurantId)
         {
-            return _context.Statuses.FirstOrDefault(x => x.RestaurantId == id).DriveThru == 0;
+            return GetRestaurantStatusById(restaurantId).DriveThru == 0;
         }
 
-        public bool EmptyInStore(int id)
+        public bool IsEmptyInStore(int restaurantId)
         {
-            return _context.Statuses.FirstOrDefault(x => x.RestaurantId == id).InStore == 0;
+            return GetRestaurantStatusById(restaurantId).InStore == 0;
+        }
+
+        public int AddDriveThru(int restaurantId)
+        {
+            Status changeStatus = GetRestaurantStatusById(restaurantId);
+
+            changeStatus.DriveThru += 1;
+
+            EditStatus(changeStatus);
+            
+            return changeStatus.DriveThru;
+        }
+
+        public int AddInStore(int restaurantId)
+        {
+            Status changeStatus = GetRestaurantStatusById(restaurantId);
+
+            changeStatus.InStore += 1;
+
+            EditStatus(changeStatus);
+
+            return changeStatus.InStore;
+        }
+
+        public int LeftDriveThru(int restaurantId)
+        {
+            if (IsEmptyDriveThru(restaurantId))
+            {
+                throw new ArgumentException("Drive-thru is already empty");
+            }
+            Status changeStatus = GetRestaurantStatusById(restaurantId);
+
+            changeStatus.DriveThru -= 1;
+
+            EditStatus(changeStatus);
+
+            return changeStatus.DriveThru;
+        }
+
+        public int LeftInStore(int restaurantId)
+        {
+            if (IsEmptyInStore(restaurantId))
+            {
+                throw new ArgumentException("Drive-thru is already empty");
+            }
+            Status changeStatus = GetRestaurantStatusById(restaurantId);
+
+            changeStatus.InStore -= 1;
+
+            EditStatus(changeStatus);
+
+            return changeStatus.InStore;
         }
 
     }
