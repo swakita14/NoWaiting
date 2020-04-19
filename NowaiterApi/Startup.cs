@@ -15,6 +15,9 @@ using NowaiterApi.DAL;
 using NowaiterApi.DAL.Repositories;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.GoogleClient;
+using NowaiterApi.Interfaces.Repository;
+using NowaiterApi.Interfaces.Service;
+using NowaiterApi.Service;
 using RestSharp;
 
 namespace NowaiterApi
@@ -60,6 +63,7 @@ namespace NowaiterApi
                 .As<IPlacesClient>();
 
             // Register Services
+            builder.RegisterType<AvailabilityService>().As<IAvailabilityService>();
 
             // Register repositories
             builder.RegisterType<LocationRepository>().As<ILocationRepository>();

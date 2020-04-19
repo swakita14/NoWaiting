@@ -17,16 +17,5 @@ namespace NowaiterApi.Interfaces.Repository
          Status GetRestaurantStatusById(int id);
 
          void EditStatus(Status status);
-         bool IsEmptyDriveThru(Status currentStatus);
-
-         bool IsEmptyInStore(Status currentStatus);
-
-         int AddDriveThru(Status changeStatus);
-
-         int AddInStore(Status changeStatus);
-
-         int LeftDriveThru(Status changeStatus);
-
-         int LeftInStore(Status changeStatus);
     }
 }
