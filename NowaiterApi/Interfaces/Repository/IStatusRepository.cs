@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NowaiterApi.Models;
 
-namespace NowaiterApi.Interfaces
+namespace NowaiterApi.Interfaces.Repository
 {
     public interface IStatusRepository
     {
@@ -17,16 +17,16 @@ namespace NowaiterApi.Interfaces
          Status GetRestaurantStatusById(int id);
 
          void EditStatus(Status status);
-         bool IsEmptyDriveThru(int id);
+         bool IsEmptyDriveThru(Status currentStatus);
 
-         bool IsEmptyInStore(int id);
+         bool IsEmptyInStore(Status currentStatus);
 
-         int AddDriveThru(int restaurantId);
+         int AddDriveThru(Status changeStatus);
 
-         int AddInStore(int restaurantId);
+         int AddInStore(Status changeStatus);
 
-         int LeftDriveThru(int restaurantId);
+         int LeftDriveThru(Status changeStatus);
 
-         int LeftInStore(int restaurantId);
+         int LeftInStore(Status changeStatus);
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using NowaiterApi.Interfaces;
+using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Models;
 
 namespace NowaiterApi.DAL.Repositories
@@ -45,20 +42,18 @@ namespace NowaiterApi.DAL.Repositories
             _context.Entry(status).State = EntityState.Modified;
             _context.SaveChanges();
         }
-        public bool IsEmptyDriveThru(int restaurantId)
+        public bool IsEmptyDriveThru(Status currentStatus)
         {
-            return GetRestaurantStatusById(restaurantId).DriveThru == 0;
+            return currentStatus.DriveThru == 0;
         }
 
-        public bool IsEmptyInStore(int restaurantId)
+        public bool IsEmptyInStore(Status currentStatus)
         {
-            return GetRestaurantStatusById(restaurantId).InStore == 0;
+            return currentStatus.InStore == 0;
         }
 
-        public int AddDriveThru(int restaurantId)
+        public int AddDriveThru(Status changeStatus)
         {
-            Status changeStatus = GetRestaurantStatusById(restaurantId);
-
             changeStatus.DriveThru += 1;
 
             EditStatus(changeStatus);
@@ -66,10 +61,8 @@ namespace NowaiterApi.DAL.Repositories
             return changeStatus.DriveThru;
         }
 
-        public int AddInStore(int restaurantId)
+        public int AddInStore(Status changeStatus)
         {
-            Status changeStatus = GetRestaurantStatusById(restaurantId);
-
             changeStatus.InStore += 1;
 
             EditStatus(changeStatus);
@@ -77,14 +70,12 @@ namespace NowaiterApi.DAL.Repositories
             return changeStatus.InStore;
         }
 
-        public int LeftDriveThru(int restaurantId)
+        public int LeftDriveThru(Status changeStatus)
         {
-            if (IsEmptyDriveThru(restaurantId))
+            if (IsEmptyDriveThru(changeStatus))
             {
                 throw new ArgumentException("Drive-thru is already empty");
             }
-            Status changeStatus = GetRestaurantStatusById(restaurantId);
-
             changeStatus.DriveThru -= 1;
 
             EditStatus(changeStatus);
@@ -92,14 +83,12 @@ namespace NowaiterApi.DAL.Repositories
             return changeStatus.DriveThru;
         }
 
-        public int LeftInStore(int restaurantId)
+        public int LeftInStore(Status changeStatus)
         {
-            if (IsEmptyInStore(restaurantId))
+            if (IsEmptyInStore(changeStatus))
             {
                 throw new ArgumentException("Drive-thru is already empty");
             }
-            Status changeStatus = GetRestaurantStatusById(restaurantId);
-
             changeStatus.InStore -= 1;
 
             EditStatus(changeStatus);
