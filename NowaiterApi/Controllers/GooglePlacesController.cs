@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.GoogleClient;
+using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Models;
-using NowaiterApi.Models.GooglePlaces;
 using NowaiterApi.Models.GooglePlaces.QuickType;
 using Location = NowaiterApi.Models.Location;
 
