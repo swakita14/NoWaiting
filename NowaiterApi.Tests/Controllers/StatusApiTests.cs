@@ -3,6 +3,8 @@ using Moq;
 using NowaiterApi.Controllers;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.Repository;
+using NowaiterApi.Models;
+using System.Collections.Generic;
 using Xunit;
 
 namespace NowaiterApi.Tests.Controllers
@@ -25,11 +27,29 @@ namespace NowaiterApi.Tests.Controllers
         [Fact]
         public void List_ActionExecutes_ReturnsActionResult()
         {
-            // Calling List api method 
+            // Act
             var result = _controller.List();
 
             // Assert 
             Assert.IsType<OkObjectResult>(result);
+        }
+
+        [Fact]
+        public void List_ActionExecutes_ReturnsExactNumberOfRestaurant()
+        {
+            // Arrange 
+            _restaurantRepositoryMock.Setup(repo => repo.GetAllRestaurants()).Returns(new List<Restaurant>()
+            {
+                new Restaurant(), new Restaurant()
+            });
+
+            // Act 
+            var result = _controller.List();
+
+            // Assert
+            var actionResult = Assert.IsType<OkObjectResult>(result);
+            var restaurants = Assert.IsType<List<Restaurant>>(actionResult.Value);
+            Assert.Equal(2, restaurants.Count);
         }
     }
 }
