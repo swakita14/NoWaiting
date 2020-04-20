@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NowaiterApi.DAL;
 using NowaiterApi.Interfaces;
+using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Models;
 using NowaiterApi.Models.ViewModel;
 
@@ -16,13 +17,11 @@ namespace NowaiterApi.Controllers
     [Route("api/status")]
     public class StatusApi : Controller
     {
-        private readonly NowaiterContext _context;
         private readonly IRestaurantRepository _restaurantRepository;
         private readonly IStatusRepository _statusRepository;
         
-        public StatusApi(NowaiterContext context, IRestaurantRepository restaurantRepository, IStatusRepository statusRepository)
+        public StatusApi(IRestaurantRepository restaurantRepository, IStatusRepository statusRepository)
         {
-            _context = context;
             _restaurantRepository = restaurantRepository;
             _statusRepository = statusRepository;
         }
