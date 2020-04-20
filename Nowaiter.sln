@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NowaiterApi", "NowaiterApi\NowaiterApi.csproj", "{E48803D7-0E9D-4556-8928-09B0A4FBE1BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NowaiterApi.Tests", "NowaiterApi.Tests\NowaiterApi.Tests.csproj", "{7F8F64FF-2662-4D46-995C-375E6EC36DBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,18 @@ Global
 		{E48803D7-0E9D-4556-8928-09B0A4FBE1BA}.Release|iPhone.Build.0 = Release|Any CPU
 		{E48803D7-0E9D-4556-8928-09B0A4FBE1BA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{E48803D7-0E9D-4556-8928-09B0A4FBE1BA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Release|iPhone.Build.0 = Release|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{7F8F64FF-2662-4D46-995C-375E6EC36DBC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
