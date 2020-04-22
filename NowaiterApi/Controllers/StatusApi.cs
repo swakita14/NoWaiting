@@ -60,7 +60,7 @@ namespace NowaiterApi.Controllers
             {
                 currentAvailability.Add(new RestaurantAvailabilityViewModel
                 {
-                    //RestaurantId = restaurant.RestaurantId,
+                    RestaurantId = restaurant.RestaurantId,
                     Name = restaurant.Name,
                     Phone = restaurant.Phone,
                     Address1 = restaurant.Address1,

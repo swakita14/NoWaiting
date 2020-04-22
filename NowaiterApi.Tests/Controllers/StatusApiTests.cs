@@ -4,6 +4,7 @@ using NowaiterApi.Controllers;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Models;
+using NowaiterApi.Models.ViewModel;
 using System.Collections.Generic;
 using Xunit;
 
@@ -49,6 +50,29 @@ namespace NowaiterApi.Tests.Controllers
             // Assert
             var actionResult = Assert.IsType<OkObjectResult>(result);
             var restaurants = Assert.IsType<List<Restaurant>>(actionResult.Value);
+            Assert.Equal(2, restaurants.Count);
+        }
+
+        [Fact]
+        public void Search_ActionExecutes_ReturnsMatchingRestaurants()
+        {
+            // Arrange
+            var searchString = "Burger";
+            _restaurantRepositoryMock.Setup(repo => repo.GetRestaurantsByName(searchString)).Returns(new List<Restaurant>()
+            {
+                new Restaurant{ RestaurantId =1, Name = "Burger" , Phone = "123", Address1 ="456"}, 
+                new Restaurant{ RestaurantId = 2, Name = "Burgerville", Phone = "123", Address1="456"}
+            });
+
+            _statusRepositoryMock.Setup(repo => repo.GetRestaurantStatusById(1)).Returns(new Status { StatusId = 1,  DriveThru = 0, InStore = 0});
+            _statusRepositoryMock.Setup(repo => repo.GetRestaurantStatusById(2)).Returns(new Status { StatusId = 2, DriveThru = 0, InStore = 0 });
+
+            //Act
+            var result = _controller.Search(searchString);
+
+            //Assert
+            var actionResult = Assert.IsType<OkObjectResult>(result);
+            var restaurants = Assert.IsType<List<RestaurantAvailabilityViewModel>>(actionResult.Value);
             Assert.Equal(2, restaurants.Count);
         }
     }
