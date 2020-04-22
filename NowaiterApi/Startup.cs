@@ -64,6 +64,7 @@ namespace NowaiterApi
 
             // Register Services
             builder.RegisterType<AvailabilityService>().As<IAvailabilityService>();
+            builder.RegisterType<RestaurantService>().As<IRestaurantService>();
 
             // Register repositories
             builder.RegisterType<LocationRepository>().As<ILocationRepository>();

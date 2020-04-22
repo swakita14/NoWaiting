@@ -20,6 +20,6 @@ namespace NowaiterApi.Interfaces
 
         Restaurant GetRestaurantWithPlaceId(string placeId);
 
-        List<Restaurant> GetRestaurantsByName(string name);
+        List<Restaurant> GetRestaurantsListByName(string name);
     }
 }

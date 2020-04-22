@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using NowaiterApi.DAL;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.Repository;
+using NowaiterApi.Interfaces.Service;
 using NowaiterApi.Models;
 using NowaiterApi.Models.ViewModel;
 
@@ -19,11 +20,13 @@ namespace NowaiterApi.Controllers
     {
         private readonly IRestaurantRepository _restaurantRepository;
         private readonly IStatusRepository _statusRepository;
+        private readonly IRestaurantService _restaurantService;
         
-        public StatusApi(IRestaurantRepository restaurantRepository, IStatusRepository statusRepository)
+        public StatusApi(IRestaurantRepository restaurantRepository, IStatusRepository statusRepository, IRestaurantService restaurantService)
         {
             _restaurantRepository = restaurantRepository;
             _statusRepository = statusRepository;
+            _restaurantService = restaurantService;
         }
 
         /**
@@ -43,11 +46,8 @@ namespace NowaiterApi.Controllers
         [HttpGet]
         public IActionResult Search(string name)
         {
-            // Getting restaurant with the matching search string 
-            List<Restaurant> searchRestaurants = _restaurantRepository.GetRestaurantsByName(name);
-
             // If list is empty, there return error 
-            if (searchRestaurants.Count == 0)
+            if (!_restaurantService.RestaurantExist(name))
             {
                 throw new ArgumentException($"Could not find any restaurants with the keyword {name}");
             }
@@ -56,7 +56,7 @@ namespace NowaiterApi.Controllers
             List<RestaurantAvailabilityViewModel> currentAvailability = new List<RestaurantAvailabilityViewModel>();
 
             // Add each item into view model list 
-            foreach (var restaurant in searchRestaurants)
+            foreach (var restaurant in _restaurantRepository.GetRestaurantsListByName(name))
             {
                 currentAvailability.Add(new RestaurantAvailabilityViewModel
                 {
