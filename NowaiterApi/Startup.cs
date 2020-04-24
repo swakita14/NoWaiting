@@ -31,6 +31,11 @@ namespace NowaiterApi
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
             this.Configuration = builder.Build();
 
         }
@@ -52,11 +57,12 @@ namespace NowaiterApi
         public void ConfigureContainer(ContainerBuilder builder)
         {
             // API key for Google Places 
-            var apiKey = "";
+            var apiKey = Configuration["GooglePlaces:ServiceApiKey"];
+            var placesUrl = Configuration["GooglePlaces:BaseUrl"];
 
             // Register RestClient for Google Places 
             builder.Register(x =>
-                new RestClient($"https://maps.googleapis.com/maps/api/place/")).Keyed<IRestClient>("GooglePlaces");
+                new RestClient(placesUrl)).Keyed<IRestClient>("GooglePlaces");
 
             // Registering Google Places client with api key 
             builder.Register(x => new PlacesClient(x.ResolveKeyed<IRestClient>("GooglePlaces"), apiKey))
