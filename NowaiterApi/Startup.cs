@@ -33,6 +33,7 @@ namespace NowaiterApi
 
             if (env.IsDevelopment())
             {
+                // Allows adding environmental variable
                 builder.AddUserSecrets<Startup>();
             }
 
@@ -41,8 +42,6 @@ namespace NowaiterApi
         }
 
         public IConfigurationRoot Configuration { get; private set; }
-
-        //public ILifetimeScope AutofacContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // Using Autofac for the IoC instead of the pre-included one 
