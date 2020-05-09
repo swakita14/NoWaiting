@@ -21,12 +21,14 @@ namespace NowaiterApi.Controllers
         private readonly IRestaurantRepository _restaurantRepository;
         private readonly IStatusRepository _statusRepository;
         private readonly IRestaurantService _restaurantService;
+        private readonly IAvailabilityService _availabilityService;
         
-        public StatusApi(IRestaurantRepository restaurantRepository, IStatusRepository statusRepository, IRestaurantService restaurantService)
+        public StatusApi(IRestaurantRepository restaurantRepository, IStatusRepository statusRepository, IRestaurantService restaurantService, IAvailabilityService availabilityService)
         {
             _restaurantRepository = restaurantRepository;
             _statusRepository = statusRepository;
             _restaurantService = restaurantService;
+            _availabilityService = availabilityService;
         }
 
         /**
@@ -80,7 +82,7 @@ namespace NowaiterApi.Controllers
         [HttpPost]
         public IActionResult EnterDriveThru(int restaurantId)
         {
-            return Ok();
+            return Ok(_availabilityService.AddDriveThru(_statusRepository.GetRestaurantStatusById(restaurantId)));
         }
 
         /**
@@ -90,7 +92,7 @@ namespace NowaiterApi.Controllers
         [HttpPost]
         public IActionResult LeftDriveThru(int restaurantId)
         {
-            return Ok();
+            return Ok(_availabilityService.LeftDriveThru(_statusRepository.GetRestaurantStatusById(restaurantId)));
         }
 
         /**
@@ -100,7 +102,7 @@ namespace NowaiterApi.Controllers
         [HttpPost]
         public IActionResult EnterInStore(int restaurantId)
         {
-            return Ok();
+            return Ok(_availabilityService.AddInStore(_statusRepository.GetRestaurantStatusById(restaurantId)));
         }
 
         /**
@@ -110,7 +112,7 @@ namespace NowaiterApi.Controllers
         [HttpPost]
         public IActionResult LeftInStore(int restaurantId)
         {
-            return Ok();
+            return Ok(_availabilityService.LeftDriveThru(_statusRepository.GetRestaurantStatusById(restaurantId)));
         }
 
     }

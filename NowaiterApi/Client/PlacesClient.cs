@@ -32,10 +32,10 @@ namespace NowaiterApi.Client
             List<Location> cities = new List<Location>
             {
                 // Monmouth 
-                new Location { Lat = 44.9429, Lng = -123.0351 },
+                new Location {Lat = 44.9429, Lng = -123.0351},
 
                 // Independence
-                new Location { Lat = 44.8512, Lng = -123.1868 }
+                new Location {Lat = 44.8512, Lng = -123.1868}
             };
 
             // Initialize list to store places 
@@ -112,6 +112,7 @@ namespace NowaiterApi.Client
             // Return Result 
             return apiResult.Result;
         }
+
 
     }
 }
