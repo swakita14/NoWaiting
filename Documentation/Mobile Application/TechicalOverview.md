@@ -1,4 +1,4 @@
-# Technical Overview: **Nowaiter**
+# Technical Overview: **Nowaiter (Mobile Application)**
 
 ## **Idea Organization**
 
