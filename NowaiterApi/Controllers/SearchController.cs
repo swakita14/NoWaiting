@@ -11,7 +11,7 @@ using NowaiterApi.Models.ViewModel;
 
 namespace NowaiterApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/search")]
     [ApiController]
     public class SearchController : ControllerBase
     {
@@ -28,9 +28,19 @@ namespace NowaiterApi.Controllers
         }
 
         /**
- * Get method to retrieve the restaurant information using the name 
- */
-        [Route("search/{name}")]
+         * Method returns all the restaurants stored in the database
+         */
+        [Route("list")]
+        [HttpGet]
+        public IActionResult List()
+        {
+            return Ok(_restaurantRepository.GetAllRestaurants());
+        }
+
+        /**
+         * Get method to retrieve the restaurant information using the name 
+         */
+        [Route("{name}")]
         [HttpGet]
         public IActionResult Search(string name)
         {
