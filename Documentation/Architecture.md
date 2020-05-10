@@ -1,4 +1,4 @@
-# Architecture: **Nowaiter**
+# Architecture: **Nowaiter (Mobile Application)**
 
 ## Framework
 - Xamarin Forms (Crossplatform)
@@ -41,5 +41,4 @@
     - GET, POST
 - Average Wait Time 
     - GET
-    - **How do I calculate this**
 
