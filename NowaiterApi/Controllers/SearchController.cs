@@ -17,9 +17,10 @@ namespace NowaiterApi.Controllers
     {
         private readonly IRestaurantService _restaurantService;
         private readonly IRestaurantRepository _restaurantRepository;
-        private readonly IStatusRepository _statusRepository; 
+        private readonly IStatusRepository _statusRepository;
 
-        public SearchController(IRestaurantService restaurantService, IRestaurantRepository restaurantRepository, IStatusRepository statusRepository)
+        public SearchController(IRestaurantService restaurantService, IRestaurantRepository restaurantRepository,
+            IStatusRepository statusRepository)
         {
             restaurantService = _restaurantService;
             restaurantRepository = _restaurantRepository;
@@ -42,7 +43,7 @@ namespace NowaiterApi.Controllers
          */
         [Route("{name}")]
         [HttpGet]
-        public IActionResult Search(string name)
+        public IActionResult SearchByName(string name)
         {
             // If list is empty, there return error 
             if (!_restaurantService.RestaurantExist(name))
@@ -69,6 +70,13 @@ namespace NowaiterApi.Controllers
 
             // Return the result
             return Ok(currentAvailability);
+        }
+
+        [Route("{lat, lng")]
+        [HttpGet]
+        public IActionResult SearchByDistance(long lat, long lng)
+        {
+            return Ok();
         }
 
     }
