@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using GeoCoordinatePortable;
 using Microsoft.EntityFrameworkCore;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Models;
@@ -54,6 +56,11 @@ namespace NowaiterApi.DAL.Repositories
         public List<Location> GetAllLocations()
         {
             return _context.Locations.ToList();
+        }
+
+        public List<Location> GetNearLocationList(long lat, long lng)
+        {
+            return null;
         }
 
         

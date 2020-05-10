@@ -9,6 +9,7 @@ using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Interfaces.Service;
 using NowaiterApi.Models.ViewModel;
 
+
 namespace NowaiterApi.Controllers
 {
     [Route("api/search")]
@@ -72,10 +73,14 @@ namespace NowaiterApi.Controllers
             return Ok(currentAvailability);
         }
 
+        /**
+         * GET method to return the restaurants nearest when give lat and long coordinates. 
+         */
         [Route("{lat, lng")]
         [HttpGet]
         public IActionResult SearchByDistance(long lat, long lng)
         {
+
             return Ok();
         }
 

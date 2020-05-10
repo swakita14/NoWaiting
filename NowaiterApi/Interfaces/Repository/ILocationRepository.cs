@@ -19,6 +19,8 @@ namespace NowaiterApi.Interfaces
 
         void DeleteLocation(Location location);
 
+        List<Location> GetNearLocationList(long lat, long lng);
+
 
     }
 }
