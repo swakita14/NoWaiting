@@ -15,10 +15,6 @@ namespace NowaiterApi.Models.ViewModel
 
         public string Address1 { get; set; }
 
-        public int? DriveThru { get; set; }
-
-        public int? InStore { get; set; }
-
         public double DistanceTo { get; set; }
     }
 }

@@ -60,7 +60,7 @@ namespace NowaiterApi.Controllers
                 {
                     Latitude = result.Geometry.Location.Lat,
                     Longitude = result.Geometry.Location.Lng,
-                    RestaurantID = newRestaurant.RestaurantId
+                    RestaurantId = newRestaurant.RestaurantId
                 };
 
                 // Adding new location for the restaurant 

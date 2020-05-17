@@ -34,7 +34,7 @@ namespace NowaiterApi.DAL.Configurations
                 .HasMaxLength(100);
                 
 
-            builder.Property(x => x.RestaurantID)
+            builder.Property(x => x.RestaurantId)
                 .HasColumnName("RestaurantID")
                 .HasColumnType("int")
                 .IsRequired();

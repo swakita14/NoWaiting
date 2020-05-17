@@ -14,7 +14,7 @@ namespace NowaiterApi.Models
 
         public double Longitude { get; set; }
 
-        public int RestaurantID { get; set; }
+        public int RestaurantId { get; set; }
 
     }
 

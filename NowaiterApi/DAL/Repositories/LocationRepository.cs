@@ -50,7 +50,7 @@ namespace NowaiterApi.DAL.Repositories
 
         public Location GetLocationByRestaurantId(int restaurantId)
         {
-            return _context.Locations.FirstOrDefault(x => x.RestaurantID == restaurantId);
+            return _context.Locations.FirstOrDefault(x => x.RestaurantId == restaurantId);
         }
 
         public List<Location> GetAllLocations()
