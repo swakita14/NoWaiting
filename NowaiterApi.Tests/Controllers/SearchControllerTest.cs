@@ -10,22 +10,22 @@ using NowaiterApi.Interfaces.Service;
 using Xunit;
 
 namespace NowaiterApi.Tests.Controllers
-{    public class StatusApiTests
+{    public class SearchControllerTest
     {
         // Adding mock repository class and controller 
         private readonly Mock<IRestaurantRepository> _restaurantRepositoryMock;
         private readonly Mock<IStatusRepository> _statusRepositoryMock;
         private readonly Mock<IRestaurantService> _restaurantServiceMock;
-        private readonly StatusApi _sut;
+        private readonly SearchController _sut;
 
-        public StatusApiTests()
+        public SearchControllerTest()
         {
             _restaurantRepositoryMock = new Mock<IRestaurantRepository>();
             _statusRepositoryMock = new Mock<IStatusRepository>();
             _restaurantServiceMock = new Mock<IRestaurantService>();
 
             // Passing in mock object to controller
-            _sut = new StatusApi(_restaurantRepositoryMock.Object, _statusRepositoryMock.Object, _restaurantServiceMock.Object);
+            _sut = new SearchController(_restaurantServiceMock.Object, _restaurantRepositoryMock.Object, _statusRepositoryMock.Object);
         }
 
         [Fact]

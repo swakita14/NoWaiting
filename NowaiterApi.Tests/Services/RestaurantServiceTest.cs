@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Moq;
 using NowaiterApi.Interfaces;
+using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Interfaces.Service;
 using NowaiterApi.Models;
 using NowaiterApi.Service;
@@ -13,13 +14,17 @@ namespace NowaiterApi.Tests.Services
     public class RestaurantServiceTest
     {
         private readonly Mock<IRestaurantRepository> _restaurantRepositoryMock;
+        private readonly Mock<ILocationRepository> _locationRepositoryMock;
+        private readonly Mock<IStatusRepository> _statusRepositoryMock;
 
         private readonly IRestaurantService _sut;
         public RestaurantServiceTest()
         {
             _restaurantRepositoryMock = new Mock<IRestaurantRepository>();
+            _locationRepositoryMock = new Mock<ILocationRepository>();
+            _statusRepositoryMock = new Mock<IStatusRepository>();
 
-            _sut = new RestaurantService(_restaurantRepositoryMock.Object);
+            _sut = new RestaurantService(_restaurantRepositoryMock.Object, _locationRepositoryMock.Object, _statusRepositoryMock.Object);
         }
 
         [Fact]

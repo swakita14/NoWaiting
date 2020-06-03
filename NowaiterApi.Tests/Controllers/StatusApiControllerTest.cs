@@ -10,12 +10,12 @@ using Xunit;
 
 namespace NowaiterApi.Tests.Services
 {
-    public class AvailabilityServiceTest
+    public class StatusApiControllerTest
     {
         private readonly Mock<IStatusRepository> _statusRepositoryMock;
 
         private readonly IAvailabilityService _sut;
-        public AvailabilityServiceTest()
+        public StatusApiControllerTest()
         {
             _statusRepositoryMock = new Mock<IStatusRepository>();
 

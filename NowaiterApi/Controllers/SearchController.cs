@@ -20,15 +20,13 @@ namespace NowaiterApi.Controllers
         private readonly IRestaurantService _restaurantService;
         private readonly IRestaurantRepository _restaurantRepository;
         private readonly IStatusRepository _statusRepository;
-        private readonly ILocationRepository _locationRepository;
 
         public SearchController(IRestaurantService restaurantService, IRestaurantRepository restaurantRepository,
-            IStatusRepository statusRepository, ILocationRepository locationRepository)
+            IStatusRepository statusRepository)
         {
             _restaurantRepository = restaurantRepository;
             _statusRepository = statusRepository;
             _restaurantService = restaurantService;
-            _locationRepository = locationRepository;
 
         }
 
@@ -79,37 +77,13 @@ namespace NowaiterApi.Controllers
         /**
          * GET method to return the restaurants nearest when give lat and long coordinates. 
          */
-        [Route("{lat, lng")]
+        [Route("{lat, lng}")]
         [HttpGet]
         public IActionResult SearchByDistance(long lat, long lng)
         {
-            // Initializing Geocoordinate object with current user coordinates 
-            GeoCoordinate currentGeoCoordinate = new GeoCoordinate(lat, lng);
-
-            // Initializing new View model list for proximity
-            List<RestaurantProximityViewModel> restaurantProximityList = new List<RestaurantProximityViewModel>();
-
-            //Initialize view model for proximity 
-            foreach (var restaurant in _restaurantRepository.GetAllRestaurants())
-            {
-                // Initializing a Geocoordinate object with the latitude and longitude of the restaurant after searching for location with restaurantId
-                GeoCoordinate restaurantCoordinate = new GeoCoordinate(_locationRepository.GetLocationByRestaurantId(restaurant.RestaurantId).Latitude, _locationRepository.GetLocationByRestaurantId(restaurant.RestaurantId).Longitude);
-
-                // Initializing the viewmodel for the restaurant proximity 
-                restaurantProximityList.Add(new RestaurantProximityViewModel
-                {
-                    RestaurantId = restaurant.RestaurantId,
-                    Name = restaurant.Name,
-                    Address1 = restaurant.Address1,
-                    Phone = restaurant.Phone,
-                    DriveThru = _statusRepository.GetRestaurantStatusById(restaurant.RestaurantId).DriveThru,
-                    InStore = _statusRepository.GetRestaurantStatusById(restaurant.RestaurantId).InStore,
-                    DistanceTo = currentGeoCoordinate.GetDistanceTo(restaurantCoordinate)
-                });
-            }
 
             // Return a 200 with the sorted list with the closest location to furthest 
-            return Ok(restaurantProximityList.OrderBy(x=> x.DistanceTo));
+            return Ok(_restaurantService.RestaurantSearchByDistance(_restaurantRepository.GetAllRestaurants(), lat, lng).OrderBy(x => x.DistanceTo));
         }
 
     }
