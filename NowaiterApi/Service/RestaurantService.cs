@@ -63,7 +63,7 @@ namespace NowaiterApi.Service
                     Phone = restaurant.Phone,
                     DriveThru = _statusRepository.GetRestaurantStatusById(restaurant.RestaurantId).DriveThru,
                     InStore = _statusRepository.GetRestaurantStatusById(restaurant.RestaurantId).InStore,
-                    //DistanceTo = currentGeoCoordinate.GetDistanceTo(restaurantCoordinate)
+                    DistanceTo = currentGeoCoordinate.GetDistanceTo(restaurantCoordinate)
                 });
             }
 
