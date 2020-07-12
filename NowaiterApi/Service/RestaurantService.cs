@@ -52,7 +52,7 @@ namespace NowaiterApi.Service
             foreach (var restaurant in restaurantList)
             {
                 // Initializing a Geocoordinate object with the latitude and longitude of the restaurant after searching for location with restaurantId
-                GeoCoordinate restaurantCoordinate = new GeoCoordinate(_locationRepository.GetLocationByRestaurantId(restaurant.RestaurantId).Latitude, _locationRepository.GetLocationByRestaurantId(restaurant.RestaurantId).Longitude);
+                GeoCoordinate restaurantCoordinate = new GeoCoordinate(_locationRepository.GetLocationLatitude(restaurant.RestaurantId), _locationRepository.GetLocationLongitude(restaurant.RestaurantId));
 
                 // Initializing the viewmodel for the restaurant proximity 
                 restaurantProximityList.Add(new RestaurantProximityViewModel
@@ -63,7 +63,7 @@ namespace NowaiterApi.Service
                     Phone = restaurant.Phone,
                     DriveThru = _statusRepository.GetRestaurantStatusById(restaurant.RestaurantId).DriveThru,
                     InStore = _statusRepository.GetRestaurantStatusById(restaurant.RestaurantId).InStore,
-                    DistanceTo = currentGeoCoordinate.GetDistanceTo(restaurantCoordinate)
+                    //DistanceTo = currentGeoCoordinate.GetDistanceTo(restaurantCoordinate)
                 });
             }
 

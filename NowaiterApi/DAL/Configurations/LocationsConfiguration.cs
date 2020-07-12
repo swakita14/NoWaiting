@@ -25,12 +25,12 @@ namespace NowaiterApi.DAL.Configurations
 
             builder.Property(x => x.Latitude)
                 .HasColumnName("Latitude")
-                .HasColumnType("nvarchar")
+                .HasColumnType("float")
                 .HasMaxLength(100);
 
             builder.Property(x => x.Longitude)
                 .HasColumnName("Longitude")
-                .HasColumnType("nvarchar")
+                .HasColumnType("float")
                 .HasMaxLength(100);
                 
 

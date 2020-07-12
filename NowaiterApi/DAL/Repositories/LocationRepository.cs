@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -48,9 +49,16 @@ namespace NowaiterApi.DAL.Repositories
             return _context.Locations.Find(id);
         }
 
-        public Location GetLocationByRestaurantId(int restaurantId)
+        public double GetLocationLatitude(int id)
         {
-            return _context.Locations.FirstOrDefault(x => x.RestaurantId == restaurantId);
+
+
+            return _context.Locations.FirstOrDefault(x => x.RestaurantId == id).Latitude;
+        }
+
+        public double GetLocationLongitude(int id)
+        {
+            return _context.Locations.FirstOrDefault(x => x.RestaurantId == id).Longitude;
         }
 
         public List<Location> GetAllLocations()

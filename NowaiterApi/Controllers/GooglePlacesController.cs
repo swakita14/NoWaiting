@@ -28,6 +28,7 @@ namespace NowaiterApi.Controllers
         {
             //InitializeGoogleLocations();
 
+
             return View();
         }
 

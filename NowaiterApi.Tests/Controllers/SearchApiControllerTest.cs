@@ -6,11 +6,12 @@ using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Models;
 using NowaiterApi.Models.ViewModel;
 using System.Collections.Generic;
+using NowaiterApi.Controllers.Api;
 using NowaiterApi.Interfaces.Service;
 using Xunit;
 
 namespace NowaiterApi.Tests.Controllers
-{    public class SearchControllerTest
+{    public class SearhcApiControllerTest
     {
         // Adding mock repository class and controller 
         private readonly Mock<IRestaurantRepository> _restaurantRepositoryMock;
@@ -18,7 +19,7 @@ namespace NowaiterApi.Tests.Controllers
         private readonly Mock<IRestaurantService> _restaurantServiceMock;
         private readonly SearchController _sut;
 
-        public SearchControllerTest()
+        public SearhcApiControllerTest()
         {
             _restaurantRepositoryMock = new Mock<IRestaurantRepository>();
             _statusRepositoryMock = new Mock<IStatusRepository>();

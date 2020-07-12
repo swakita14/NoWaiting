@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using GeoCoordinatePortable;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.Repository;
@@ -11,11 +9,11 @@ using NowaiterApi.Interfaces.Service;
 using NowaiterApi.Models.ViewModel;
 
 
-namespace NowaiterApi.Controllers
+namespace NowaiterApi.Controllers.Api
 {
     [Route("api/search")]
     [ApiController]
-    public class SearchController : ControllerBase
+    public class SearchController : Controller
     {
         private readonly IRestaurantService _restaurantService;
         private readonly IRestaurantRepository _restaurantRepository;
@@ -32,6 +30,7 @@ namespace NowaiterApi.Controllers
 
         /**
          * Method returns all the restaurants stored in the database
+         * GET: api/search/list
          */
         [Route("list")]
         [HttpGet]
@@ -41,9 +40,10 @@ namespace NowaiterApi.Controllers
         }
 
         /**
-         * Get method to retrieve the restaurant information using the name 
+         * Get method to retrieve the restaurant information using the name
+         * GET: api/search/subway
          */
-        [Route("{name}")]
+        [Route("name/{name}")]
         [HttpGet]
         public IActionResult SearchByName(string name)
         {
@@ -75,15 +75,21 @@ namespace NowaiterApi.Controllers
         }
 
         /**
-         * GET method to return the restaurants nearest when give lat and long coordinates. 
+         * GET method to return the restaurants nearest when give lat and long coordinates.
+         * GET: api/search/44.9385982/-123.0398169
          */
-        [Route("{lat, lng}")]
+        [Route("distance/{lat}/{lng}")]
         [HttpGet]
-        public IActionResult SearchByDistance(long lat, long lng)
+        public IActionResult SearchByDistance(string lat, string lng)
         {
+            double dlattitude = Convert.ToDouble(lat);
+            double dlongitude = Convert.ToDouble(lng);
+
+            long lattitude = Convert.ToInt64(dlattitude);
+            long longitutde = Convert.ToInt64(dlongitude);
 
             // Return a 200 with the sorted list with the closest location to furthest 
-            return Ok(_restaurantService.RestaurantSearchByDistance(_restaurantRepository.GetAllRestaurants(), lat, lng).OrderBy(x => x.DistanceTo));
+            return Ok(_restaurantService.RestaurantSearchByDistance(_restaurantRepository.GetAllRestaurants(), lattitude, longitutde).OrderBy(x => x.DistanceTo));
         }
 
     }

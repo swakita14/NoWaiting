@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using NowaiterApi.Client;
 using NowaiterApi.DAL;
@@ -92,9 +93,13 @@ namespace NowaiterApi
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllerRoute(name: "default", pattern: "{controller=GooglePlaces}/{action=Index}");
-                });
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=SearchApi}/{action=List}");
+            });
+
+            //app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
