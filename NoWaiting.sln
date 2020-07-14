@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NowaiterApi", "NowaiterApi\NowaiterApi.csproj", "{E48803D7-0E9D-4556-8928-09B0A4FBE1BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoWaitingAPI", "NoWaitingAPI\NoWaitingAPI.csproj", "{E48803D7-0E9D-4556-8928-09B0A4FBE1BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NowaiterApi.Tests", "NowaiterApi.Tests\NowaiterApi.Tests.csproj", "{7F8F64FF-2662-4D46-995C-375E6EC36DBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoWaitingAPI.Tests", "NoWaitingAPI.Tests\NoWaitingAPI.Tests.csproj", "{7F8F64FF-2662-4D46-995C-375E6EC36DBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

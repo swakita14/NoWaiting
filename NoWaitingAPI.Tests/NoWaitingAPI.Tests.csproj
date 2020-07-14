@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NowaiterApi\NowaiterApi.csproj" />
+    <ProjectReference Include="..\NoWaitingAPI\NoWaitingAPI.csproj" />
   </ItemGroup>
 
 </Project>

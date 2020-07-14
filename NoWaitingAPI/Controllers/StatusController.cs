@@ -12,7 +12,7 @@ using NowaiterApi.Models;
 using NowaiterApi.Models.ViewModel;
 
 
-namespace NowaiterApi.Controllers.Api
+namespace NowaiterApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -9,7 +9,7 @@ using NowaiterApi.Interfaces.Service;
 using NowaiterApi.Models.ViewModel;
 
 
-namespace NowaiterApi.Controllers.Api
+namespace NowaiterApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
