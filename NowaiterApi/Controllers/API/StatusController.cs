@@ -15,13 +15,13 @@ using NowaiterApi.Models.ViewModel;
 namespace NowaiterApi.Controllers.Api
 {
     [ApiController]
-    [Route("api/status")]
-    public class StatusApi : Controller
+    [Route("api/[controller]")]
+    public class StatusController : ControllerBase
     {
         private readonly IStatusRepository _statusRepository;
         private readonly IAvailabilityService _availabilityService;
         
-        public StatusApi( IStatusRepository statusRepository, IAvailabilityService availabilityService)
+        public StatusController( IStatusRepository statusRepository, IAvailabilityService availabilityService)
         {
             _statusRepository = statusRepository;
             _availabilityService = availabilityService;

@@ -24,14 +24,6 @@ namespace NowaiterApi.Controllers
             _statusRepository = statusRepository;
         }
 
-        public IActionResult Index()
-        {
-            //InitializeGoogleLocations();
-
-
-            return View();
-        }
-
         public void InitializeGoogleLocations()
         {
             // Getting the place_id list and finding the details about each restaurant 

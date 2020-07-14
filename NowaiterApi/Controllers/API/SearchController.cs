@@ -11,9 +11,9 @@ using NowaiterApi.Models.ViewModel;
 
 namespace NowaiterApi.Controllers.Api
 {
-    [Route("api/search")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class SearchController : Controller
+    public class SearchController : ControllerBase
     {
         private readonly IRestaurantService _restaurantService;
         private readonly IRestaurantRepository _restaurantRepository;
@@ -76,20 +76,14 @@ namespace NowaiterApi.Controllers.Api
 
         /**
          * GET method to return the restaurants nearest when give lat and long coordinates.
-         * GET: api/search/44.9385982/-123.0398169
+         * GET: api/search/distance/44.9385982/-123.0398169
          */
         [Route("distance/{lat}/{lng}")]
         [HttpGet]
-        public IActionResult SearchByDistance(string lat, string lng)
+        public IActionResult SearchByDistance(double lat, double lng)
         {
-            double dlattitude = Convert.ToDouble(lat);
-            double dlongitude = Convert.ToDouble(lng);
-
-            long lattitude = Convert.ToInt64(dlattitude);
-            long longitutde = Convert.ToInt64(dlongitude);
-
             // Return a 200 with the sorted list with the closest location to furthest 
-            return Ok(_restaurantService.RestaurantSearchByDistance(_restaurantRepository.GetAllRestaurants(), lattitude, longitutde).OrderBy(x => x.DistanceTo));
+            return Ok(_restaurantService.RestaurantSearchByDistance(_restaurantRepository.GetAllRestaurants(), lat, lng).OrderBy(x => x.DistanceTo));
         }
 
     }
