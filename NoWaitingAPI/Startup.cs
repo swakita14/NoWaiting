@@ -20,6 +20,7 @@ using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Interfaces.Service;
 using NowaiterApi.Service;
 using RestSharp;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace NowaiterApi
 {
@@ -52,6 +53,17 @@ namespace NowaiterApi
             services.AddMvc();
             services.AddDbContext<NowaiterContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:NowaiterDB"]));
             services.AddControllers();
+
+            // 1. Add Authentication Services
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration["Auth0:Domain"];
+                options.Audience = Configuration["Auth0:Audience"];
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -91,6 +103,9 @@ namespace NowaiterApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // 2. Enable authentication middleware
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
-using NowaiterApi.DAL;
-using NowaiterApi.Interfaces;
 using NowaiterApi.Interfaces.Repository;
 using NowaiterApi.Interfaces.Service;
-using NowaiterApi.Models;
-using NowaiterApi.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+
 
 
 namespace NowaiterApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class StatusController : ControllerBase
     {
         private readonly IStatusRepository _statusRepository;
